@@ -1,0 +1,63 @@
+default vesamenu.c32
+prompt 1
+timeout 120
+
+label local
+menu label Boot from ^local drive
+menu default
+localboot 0xffff
+
+label linux
+menu label ^Live Fedora 33 Workstation 64-bits
+kernel fedora-33-workstation/vmlinuz
+append initrd=fedora-33-workstation/initrd.img root=live:http://nim.onda.br:8080/fedora/33/Workstation/x86_64/LiveOS/squashfs.img rd.live.image ip=dhcp
+
+label live-coreos
+menu label ^Live Fedora CoreOS
+kernel fedora-coreos/fedora-coreos-32.20201104.3.0-live-kernel-x86_64
+append initrd=fedora-coreos/fedora-coreos-32.20201104.3.0-live-initramfs.x86_64.img,fedora-coreos/fedora-coreos-32.20201104.3.0-live-rootfs.x86_64.img mitigations=auto,nosmt ignition.firstboot ignition.platform.id=metal systemd.unified_cgroup_hierarchy=0
+
+label server
+menu label ^Install Fedora 33 (kickstart provision)
+kernel fedora-33-server/vmlinuz
+append initrd=fedora-33-server/initrd.img inst.stage2=http://nim.onda.br:8080/fedora/33/Server/x86_64/os ip=dhcp inst.ks=http://nim.onda.br:8080/kickstarts/fedora-server-ks.cfg
+
+label server-k8s
+menu label ^Install Fedora 33 (k8s kickstart provision)
+kernel fedora-33-server/vmlinuz
+append initrd=fedora-33-server/initrd.img inst.stage2=http://nim.onda.br:8080/fedora/33/Server/x86_64/os ip=dhcp inst.ks=http://nim.onda.br:8080/kickstarts/fedora-k8s.cfg
+
+label fedora-coreos-install
+menu label ^Install Fedora CoreOS - Install
+kernel fedora-coreos/fedora-coreos-32.20200726.3.0-live-kernel-x86_64
+append initrd=fedora-coreos/fedora-coreos-32.20200726.3.0-live-initramfs.x86_64.img,fedora-coreos/fedora-coreos-32.20200726.3.0-live-rootfs.x86_64.img ignition.firstboot ignition.platform.id=metal coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/ignition/config.ign
+
+label fedora-coreos-bootstrap
+menu label ^Install Fedora CoreOS - OpenShift Bootstrap
+kernel fedora-coreos/fedora-coreos-33.20210217.3.0-live-kernel-x86_64
+append initrd=fedora-coreos/fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img,fedora-coreos/fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/bootstrap.ign
+
+label fedora-coreos-master
+menu label ^Install Fedora CoreOS - OpenShift Master
+kernel fedora-coreos/fedora-coreos-33.20210217.3.0-live-kernel-x86_64
+append initrd=fedora-coreos/fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img,fedora-coreos/fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/master.ign
+
+label fedora-coreos-worker
+menu label ^Install Fedora CoreOS - OpenShift Worker
+kernel fedora-coreos/fedora-coreos-33.20210217.3.0-live-kernel-x86_64
+append initrd=fedora-coreos/fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img,fedora-coreos/fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/worker.ign
+
+label rhel-coreos-bootstrap
+menu label ^Install Red Hat CoreOS - OpenShift Bootstrap
+kernel rhel-coreos/rhcos-4.7.7-x86_64-live-kernel-x86_64
+append initrd=rhel-coreos/rhcos-4.7.7-x86_64-live-initramfs.x86_64.img,rhel-coreos/rhcos-4.7.7-x86_64-live-rootfs.x86_64.img rd.neednet=1 coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/bootstrap.ign
+
+label rhel-coreos-master
+menu label ^Install Red Hat CoreOS - OpenShift Master
+kernel rhel-coreos/rhcos-4.7.7-x86_64-live-kernel-x86_64
+append initrd=rhel-coreos/rhcos-4.7.7-x86_64-live-initramfs.x86_64.img,rhel-coreos/rhcos-4.7.7-x86_64-live-rootfs.x86_64.img rd.neednet=1 coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/master.ign
+
+label rhel-coreos-worker
+menu label ^Install Red Hat CoreOS - OpenShift Worker
+kernel rhel-coreos/rhcos-4.7.7-x86_64-live-kernel-x86_64
+append initrd=rhel-coreos/rhcos-4.7.7-x86_64-live-initramfs.x86_64.img,rhel-coreos/rhcos-4.7.7-x86_64-live-rootfs.x86_64.img rd.neednet=1 coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://okd4-services.okd.local:8080/baremetal/worker.ign
