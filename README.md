@@ -14,6 +14,9 @@ https://builds.coreos.fedoraproject.org/browser?stream=stable
 - Live Initramfs: fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img
 - Live Rootfs: fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img
 
+# Get pull request
+
+https://cloud.redhat.com/openshift/install/pull-secret
 
 # master nodes with vmxnet3 driver
 ```
