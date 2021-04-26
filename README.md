@@ -1,6 +1,6 @@
 # Working combination (so far)
 - Fedora CoreOS 33.20210217.3.0
-- OKD 4.6.0-0.okd-2021-02-14-205305
+- OKD 4.7.0-0.okd-2021-04-24-103438
 - ESXi 7.0U2
 
 ## Links for Fedora CoreOS
@@ -86,3 +86,7 @@ Where:
 `fqdn.host`: full hostname for the TFTP server
 
 `IP-host`: IP address for the TFTP server
+
+# After ~40 minutes
+
+![Operators after 40 minutes](.img/operators.png)
