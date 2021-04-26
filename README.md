@@ -3,22 +3,22 @@
 - OKD 4.7.0-0.okd-2021-04-24-103438
 - ESXi 7.0U2
 
-## Links for Fedora CoreOS
+### Links for Fedora CoreOS
 https://builds.coreos.fedoraproject.org/browser?stream=stable
 
-### ISO
+#### ISO
 - Live ISO: fedora-coreos-33.20210217.3.0-live.x86_64.iso https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live.x86_64.iso
 
-### PXE
+#### PXE
 - Live Kernel: fedora-coreos-33.20210217.3.0-live-kernel-x86_64 https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live-kernel-x86_64
 - Live Initramfs: fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live-initramfs.x86_64.img
 - Live Rootfs: fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/33.20210217.3.0/x86_64/fedora-coreos-33.20210217.3.0-live-rootfs.x86_64.img
 
-# Get pull request
+## Get pull request
 
 https://cloud.redhat.com/openshift/install/pull-secret
 
-# master nodes with vmxnet3 driver
+## master nodes with vmxnet3 driver
 ```
 sudo ethtool -K ens192 tx-udp_tnl-segmentation off
 sudo ethtool -K ens192 tx-udp_tnl-csum-segmentation off
@@ -59,46 +59,52 @@ networking:
 ...
 ```
 
-# export kubeconfig key
+## export kubeconfig key
 ```
 export KUBECONFIG=/usr/share/nginx/html/baremetal/auth/kubeconfig
 ```
 
-# Follow bootstrap progress
+## Follow bootstrap progress
 ```
 openshift-install --dir=/usr/share/nginx/html/baremetal/ wait-for bootstrap-complete --log-level=info
 ```
 
-# Get node
+## Get node
 ```
 oc get nodes
 ```
 
-# Check for operator status
+## Check for operator status
 ```
 watch -n 5 oc get clusteroperators
 ```
 
-# CSR opertations
-## Get CSR
+## CSR operations
+### Get CSR
 ```
 oc get csr
 ```
 
-## Approve CSR
+### Approve CSR
 ```
 oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
 ```
 
-# Get kubeadmin password for Console
+## Wait for install completion
+
+```
+openshift-install --dir=/usr/share/nginx/html/baremetal/ wait-for install-complete
+```
+
+## Get kubeadmin password for Console
 ```
 cat /usr/share/nginx/html/baremetal/auth/kubeadmin-password
 ```
 
 https://console-openshift-console.apps.lab.okd.local/
 
-# Persistent Volume
-## NFS
+## Persistent Volume
+### NFS
 Copy `exports` to `/etc`.
 
 Edit `registry_pv.yaml` to match NFS exported filesystem.
@@ -127,8 +133,8 @@ To:
 ```
 
 
-# Other configs
-## dnsmasq support for PXE (asuswrt-merlin)
+## Other configs
+### dnsmasq support for PXE (asuswrt-merlin)
 
 ```
 dhcp-boot=pxelinux.0,fqdn.host,IP-host
@@ -139,11 +145,11 @@ Where:
 
 `IP-host`: IP address for the TFTP server
 
-# After ~40 minutes
+## After ~40 minutes
 
 ![Operators after 40 minutes](.img/operators.png)
 
-# Sources
+## Sources
 
 https://itnext.io/guide-installing-an-okd-4-5-cluster-508a2631cbee
 
