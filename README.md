@@ -97,6 +97,36 @@ cat /usr/share/nginx/html/baremetal/auth/kubeadmin-password
 
 https://console-openshift-console.apps.lab.okd.local/
 
+# Persistent Volume
+## NFS
+Copy `exports` to `/etc`.
+
+Edit `registry_pv.yaml` to match NFS exported filesystem.
+
+Create the PV:
+```
+oc create -f registry_pv.yaml
+oc get pv
+```
+
+Edit image-registry operator:
+```
+oc edit configs.imageregistry.operator.openshift.io
+```
+From: `  managementState: Removed`
+
+To: `  managementState: Managed`
+
+From: `  storage: {}`
+
+To:
+```yaml
+  storage:
+    pvc:
+      claim:
+```
+
+
 # Other configs
 ## dnsmasq support for PXE (asuswrt-merlin)
 
