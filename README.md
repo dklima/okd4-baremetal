@@ -66,9 +66,9 @@ export KUBECONFIG=/usr/share/nginx/html/baremetal/auth/kubeconfig
 openshift-install --dir=/usr/share/nginx/html/baremetal/ wait-for bootstrap-complete --log-level=info
 ```
 
-# Approve CSR
+# Get node
 ```
-oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+oc get nodes
 ```
 
 # Check for operator status
@@ -76,13 +76,32 @@ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{
 watch -n 5 oc get clusteroperators
 ```
 
+# CSR opertations
+## Get CSR
+```
+oc get csr
+```
+
+## Approve CSR
+```
+oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+```
+
+# Get kubeadmin password for Console
+```
+cat /usr/share/nginx/html/baremetal/auth/kubeadmin-password
+```
+
+https://console-openshift-console.apps.lab.okd.local/
+
 # Other configs
-## dnsmasq support for PXE
+## dnsmasq support for PXE (asuswrt-merlin)
 
 ```
 dhcp-boot=pxelinux.0,fqdn.host,IP-host
 ```
 Where:
+
 `fqdn.host`: full hostname for the TFTP server
 
 `IP-host`: IP address for the TFTP server
