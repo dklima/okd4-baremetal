@@ -20,7 +20,7 @@ https://builds.coreos.fedoraproject.org/browser?stream=stable
     sudo ethtool -K ens192 tx-udp_tnl-csum-segmentation off
 ```
 
-## File: `/etc/NetworkManager/dispatcher.d/99-vsphere-disable-tx-udp-tnl`
+#### File: `/etc/NetworkManager/dispatcher.d/99-vsphere-disable-tx-udp-tnl`
 > Reference: https://github.com/openshift/machine-config-operator/pull/2495/files
 
 ```
@@ -36,7 +36,7 @@ https://builds.coreos.fedoraproject.org/browser?stream=stable
     fi
 ```
 
-## File: `install-config.yaml`
+#### File: `install-config.yaml`
 
 From: `networkType: OpenShiftSDN`
 
