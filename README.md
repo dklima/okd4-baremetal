@@ -1,6 +1,7 @@
 # Working combination (so far)
 - Fedora CoreOS 33.20210217.3.0
 - OKD 4.6.0-0.okd-2021-02-14-205305
+- ESXi 7.0U2
 
 ## Links for Fedora CoreOS
 https://builds.coreos.fedoraproject.org/browser?stream=stable
