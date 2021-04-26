@@ -142,3 +142,11 @@ Where:
 # After ~40 minutes
 
 ![Operators after 40 minutes](.img/operators.png)
+
+# Sources
+
+https://itnext.io/guide-installing-an-okd-4-5-cluster-508a2631cbee
+
+https://docs.openshift.com/container-platform/4.7/installing/installing_bare_metal/installing-bare-metal.html
+
+https://github.com/openshift/okd/issues/
