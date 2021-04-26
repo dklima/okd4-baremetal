@@ -24,6 +24,8 @@ sudo ethtool -K ens192 tx-udp_tnl-csum-segmentation off
 #### File: `/etc/NetworkManager/dispatcher.d/99-vsphere-disable-tx-udp-tnl`
 > Reference: https://github.com/openshift/machine-config-operator/pull/2495/files
 
+Place in all openshift nodes, masters and workers.
+
 ```
 #!/bin/bash
 # Workaround:
@@ -71,7 +73,7 @@ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{
 
 # Check for operator status
 ```
-watch -s 5 oc get clusteroperators
+watch -n 5 oc get clusteroperators
 ```
 
 # Other configs
