@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This script will install and set the pre-reqs to activate a OKD 4.7 cluster
+
 OKD4_DIR='/tmp/okd4'
 OKD4_VERSION='4.7.0-0.okd-2021-04-24-103438'
 GITHUB_RELEASE_URL="https://github.com/openshift/okd/releases/download/${OKD4_VERSION}"
@@ -25,29 +27,30 @@ function validation() {
 
 function install_packages() {
   dnf -y update
-  dnf -y install bind bind-utils haproxy nginx tftp-server wget
+  dnf -y install bind bind-utils haproxy nginx tftp-server wget nfs-utils
 }
 
 function enable_services() {
-  systemctl enable named
-  systemctl enable nginx
-  systemctl enable tftp
-  systemctl enable haproxy
+  systemctl enable named nginx tftp haproxy nfs-server rpcbind
 }
 
 function open_firewall_ports() {
   firewall-cmd --permanent --add-port=53/udp
   firewall-cmd --permanent --add-port=6443/tcp
+  firewall-cmd --permanent --add-port=8080/tcp
   firewall-cmd --permanent --add-port=22623/tcp
+  firewall-cmd --permanent --add-service mountd
+  firewall-cmd --permanent --add-service nfs
+  firewall-cmd --permanent --add-service rpc-bind
   firewall-cmd --permanent --add-service=http
   firewall-cmd --permanent --add-service=https
-  firewall-cmd --permanent --add-port=8080/tcp
   firewall-cmd --reload
 }
 
 function selinux() {
   setsebool -P haproxy_connect_any 1
   setsebool -P httpd_read_user_content 1
+  setsebool -P nfs_export_all_rw 1
 }
 
 function create_dir() {
