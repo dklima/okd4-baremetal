@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 OKD4_DIR='/tmp/okd4'
-OKD4_VERSION='4.6.0-0.okd-2021-02-14-205305'
+OKD4_VERSION='4.7.0-0.okd-2021-04-24-103438'
 GITHUB_RELEASE_URL="https://github.com/openshift/okd/releases/download/${OKD4_VERSION}"
 OKD4_CLIENT="openshift-client-linux-${OKD4_VERSION}.tar.gz"
 OKD4_INSTALL="openshift-install-linux-${OKD4_VERSION}.tar.gz"
