@@ -26,7 +26,7 @@ sudo ethtool -K ens192 tx-udp_tnl-csum-segmentation off
 
 Place in all openshift nodes, masters and workers.
 
-```
+```bash
 #!/bin/bash
 # Workaround:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1941714
@@ -44,7 +44,7 @@ fi
 From: `networkType: OpenShiftSDN`
 
 To: `networkType: OVNKubernetes`
-```
+```yaml
 ...
 networking:
   clusterNetwork:
