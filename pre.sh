@@ -48,7 +48,6 @@ function open_firewall_ports() {
 function selinux() {
   setsebool -P haproxy_connect_any 1
   setsebool -P httpd_read_user_content 1
-  restorecon -Rv /
 }
 
 function create_dir() {
@@ -59,7 +58,7 @@ function create_dir() {
 
 function clear_dir() {
   if test -d "${OKD4_DIR}"; then
-    rm -f "${OKD4_DIR}/*"
+    rm -f "${OKD4_DIR}"/*
   fi
 }
 
