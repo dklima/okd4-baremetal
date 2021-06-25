@@ -39,11 +39,12 @@ function open_firewall_ports() {
   firewall-cmd --permanent --add-port=6443/tcp
   firewall-cmd --permanent --add-port=8080/tcp
   firewall-cmd --permanent --add-port=22623/tcp
-  firewall-cmd --permanent --add-service mountd
-  firewall-cmd --permanent --add-service nfs
-  firewall-cmd --permanent --add-service rpc-bind
+  firewall-cmd --permanent --add-service=mountd
+  firewall-cmd --permanent --add-service=nfs
+  firewall-cmd --permanent --add-service=rpc-bind
   firewall-cmd --permanent --add-service=http
   firewall-cmd --permanent --add-service=https
+  firewall-cmd --permanent --add-service=tftp
   firewall-cmd --reload
 }
 
