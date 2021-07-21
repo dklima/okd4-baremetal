@@ -2,6 +2,7 @@
 - Fedora CoreOS 33.20210217.3.0
 - OKD 4.7.0-0.okd-2021-04-24-103438
 - ESXi 7.0U2
+- KVM
 
 ### Links for Fedora CoreOS
 https://builds.coreos.fedoraproject.org/browser?stream=stable
